@@ -5,9 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:fix": "eslint --fix --ext .js .vue src",
+    "prettier": "prettier --write ./src/**/**/**/*"
   },
   "dependencies": {
+    "element-ui": "^2.4.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -17,8 +20,10 @@
     "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
     "@vue/cli-service": "^3.0.0-beta.15",
     "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
+    "babel-plugin-component": "^1.1.1",
     "lint-staged": "^6.0.0",
     "node-sass": "^4.9.0",
+    "prettier": "1.13.5",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.16"
   },
@@ -27,16 +32,13 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "lint-staged": {
     "*.js": [
-      "vue-cli-service lint",
+      "vue-cli-service lint --fix",
       "git add"
     ],
     "*.vue": [
-      "vue-cli-service lint",
+      "vue-cli-service lint --fix",
       "git add"
     ]
   }
