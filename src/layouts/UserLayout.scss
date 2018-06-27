@@ -1,0 +1,32 @@
+.userlayout {
+    background: #002140;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    .content {
+        padding: 32px 0;
+        flex: 1;
+        @media screen and (min-width:992px) {
+            padding: 112px 0 24px 0;
+          }
+    }
+    .top {
+        text-align: center;
+    }
+    .header {
+        height: 44px;
+        line-height: 44px;
+        margin-bottom: 24px;
+        a {
+            text-decoration: none;
+        }
+    }
+    .title {
+        font-size: 33px;
+        color: #fff;
+        font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        position: relative;
+        top: 2px;
+    }
+}

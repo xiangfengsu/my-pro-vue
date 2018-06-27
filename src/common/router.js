@@ -1,40 +1,107 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Main from '@/layouts/BasicLayout';
+import Main from '@/layouts/BasicLayout.vue';
+import UserLayout from '@/layouts/UserLayout.vue';
 
 Vue.use(VueRouter);
-export const otherRouter = {
-  path: '/',
-  name: 'otherRouter',
-  redirect: '/member/membermanage',
-  component: Main,
+
+export const page404 = {
+  path: '/*',
+  name: 'e-404',
+  title: '404',
+  redirect: '/exception/404',
 };
+// const exceptionRouter1 = [{
+//   path: '/exception/403',
+//   name: '403',
+//   title: '403',
+//   component: () =>
+//     import ('@/views/Exception/403'),
+// }, {
+//   path: '/exception/404',
+//   name: '404',
+//   title: '404',
+//   component: () =>
+//     import ('@/views/Exception/404'),
+// }, {
+//   path: '/exception/500',
+//   name: '500',
+//   title: '500',
+//   component: () =>
+//     import ('@/views/Exception/500'),
+// }, ];
 export const exceptionRouter = {
   path: '/exception',
   name: 'exception',
   title: 'exception',
+  redirect: '/exception/404',
   component: Main,
   children: [{
-    path: '403',
-    name: '403',
-    title: '403',
-    component: () =>
-            import('@/views/Exception/403'),
-  }, {
     path: '404',
     name: '404',
     title: '404',
     component: () =>
-            import('@/views/Exception/404'),
+      import('@/views/Exception/404'),
+  }, {
+    path: '403',
+    name: '403',
+    title: '403',
+    component: () =>
+      import('@/views/Exception/403'),
   }, {
     path: '500',
     name: '500',
     title: '500',
     component: () =>
-            import('@/views/Exception/500'),
+      import('@/views/Exception/500'),
   }],
 };
+
+export const userRouter = [{
+  path: '/user',
+  name: 'user',
+  title: 'user',
+  redirect: '/user/login',
+  component: UserLayout,
+  children: [{
+    path: 'login',
+    name: 'login',
+    title: '登录',
+    component: () => import('@/views/User/Login.vue'),
+  }],
+}];
+
+export const mainRouter = [{
+  path: '/member/membermanage',
+  name: 'membermanage',
+  title: 'membermanage',
+  component: () =>
+    import('@/views/Home'),
+}, {
+  path: '/member/membertags',
+  name: 'membertags',
+  title: 'membertags',
+  component: () =>
+    import('@/views/About'),
+}];
+export const basicRouter = [{
+  path: '/',
+  name: 'home',
+  component: Main,
+}];
 export const appRouter = [{
+  path: '/formItemType',
+  name: 'formItemType',
+  title: 'formItemType',
+  component: Main,
+  children: [{
+    path: 'formItemTypePage',
+    name: 'formItemTypePage',
+    title: '表单类型',
+    component: () =>
+      import('@/views/FormItem/index'),
+  }],
+}, {
   path: '/member',
   name: 'member',
   title: 'member',
@@ -42,29 +109,25 @@ export const appRouter = [{
   children: [{
     path: 'membermanage',
     name: 'membermanage',
-    title: 'membermanage',
+    title: '会员管理',
     component: () =>
-            import('@/views/Home'),
+      import('@/views/Home'),
   }, {
     path: 'membertags',
     name: 'membertags',
-    title: 'membertags',
+    title: '标签设置',
     component: () =>
-            import('@/views/About'),
+      import('@/views/About'),
   }],
 }];
 
-export const basicRouter = [{
-  path: '/',
-  name: 'home',
-  component: () =>
-        import('../layouts/BasicLayout'),
-  children: appRouter,
-}];
 export const routers = [
-  otherRouter,
-  exceptionRouter,
+  ...userRouter,
+  ...basicRouter,
   ...appRouter,
+  exceptionRouter,
+  // ...exceptionRouter1,
+  page404,
 
 ];
 // 路由配置

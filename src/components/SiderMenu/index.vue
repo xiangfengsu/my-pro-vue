@@ -11,9 +11,9 @@
       </router-link>
 
     </div>
-    <el-menu :collapse="collapse" :default-active="$route.name" :router="false" @open="handleOpen" @close="handleClose" background-color="#001529" text-color="#fff" active-text-color="#ffd04b" @select="selectMenu">
+    <el-menu :collapse="collapse" :default-active="$route.path" :router="false" @open="handleOpen" @close="handleClose" background-color="#001529" text-color="#fff" active-text-color="#ffd04b" @select="selectMenu">
       <template v-for="item in menuList">
-        <el-menu-item v-if="!item.children||item.children&&item.children.length===0" :index="item.path" :key="'menuitem' + item.name"  >
+        <el-menu-item v-if="!item.children||item.children&&item.children.length===0" :index="`/${item.path}`" :key="'menuitem' + item.name"  >
           <i :class="[item.icon]"></i>
           <span slot="title">{{item.name}}</span>
         </el-menu-item>
@@ -67,8 +67,8 @@ export default {
   methods: {
     handleOpen() {},
     handleClose() {},
-    selectMenu(index) {
-      this.$router.push({ path: index });
+    selectMenu(index,indexPath) {
+      this.$router.push({ path: `${index}` });
     },
   },
 };

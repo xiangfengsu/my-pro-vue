@@ -1,7 +1,7 @@
 <template>
     <div>
         <template v-for="item in menuData" >
-            <el-menu-item v-if="!item.children||item.children&&item.children.length===0" :index="item.path" :key="'menuitem' + item.name">
+            <el-menu-item v-if="!item.children||item.children&&item.children.length===0" :index="`/${item.path}`" :key="'menuitem' + item.name">
                 <i :class="[item.icon]"></i>
                 <span slot="title">{{item.name}}</span>
             </el-menu-item>

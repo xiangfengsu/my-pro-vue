@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <router-view name="user"></router-view>
   </div>
 </template>
 
@@ -16,7 +17,29 @@ body {
   line-height: 1.5;
   color: rgba(0, 0, 0, 0.65);
   background-color: #fff;
+  height: 100%;
 }
-#app {
+html,body,#app {
+  height: 100%;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.iconfont {
+  speak: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: baseline;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
 }
 </style>

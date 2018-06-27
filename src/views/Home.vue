@@ -1,15 +1,24 @@
 <template>
   <div class="home">
-    <div class="t">
-      dddd
-    </div>
+    <page-header>
+      <el-card shadow="never">
+        home
+      </el-card>
+    </page-header>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
+import { Card } from "element-ui";
+import PageHeader from "@/components/PageHeader/index";
+Vue.component(Card.name,Card);
+
 export default {
   name: "home",
-  components: {}
+  components: {
+    PageHeader
+  }
 };
 </script>
 <style lang="scss">

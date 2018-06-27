@@ -9,8 +9,10 @@
         <div class="content">
             <h1>{{exceptionTitle}}</h1>
             <div class="desc">{{exceptionDesc}}</div>
-            <div class="actions">
-               <el-button type="primary">返回首页</el-button>
+            <div class="actions" >
+               <router-link to="/" :style="{display:'inline-blcok'}">
+                 <el-button type="primary" >返回首页</el-button>
+               </router-link>
             </div>
         </div>
     </div>
