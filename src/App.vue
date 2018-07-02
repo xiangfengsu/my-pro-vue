@@ -21,6 +21,13 @@ body {
 }
 html,body,#app {
   height: 100%;
+  .clearfix{
+    &::after{
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
 }
 ::-webkit-scrollbar-thumb {
   background-color: #e6e6e6;

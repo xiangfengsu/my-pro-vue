@@ -1,33 +1,38 @@
 <template>
-    <page-header>
-        <el-card shadow="never">
-            <div class="formitem">
-                <!-- <custom-form :searchFormItemList="searchFormItemList" ref="form"></custom-form>
+  <page-header>
+    <el-card shadow="never">
+      <div class="formitem">
+        <!-- <custom-form :searchFormItemList="searchFormItemList" ref="form"></custom-form>
                 <el-button type="primary" @click="submitForm('form')">立即创建</el-button> -->
-                <el-form ref="form" :model="searchForms" label-position="top" :inline="false" >
-                    <el-row>
-                        <el-col v-for="item in searchFormItemList" :key="item.key" :span="item.colSpan || 8">
-                            <el-card class="box-card">
-                                <div slot="header" >
-                                    <span>{{item.label}}</span>
-                                </div>
-                                <div>
-                                    <custom-form-item :item="item" v-model="searchForms[item.key]"></custom-form-item>
-                                </div>
-                            </el-card>
-                            
-                        </el-col>
-                        <el-col>
-                            <el-form-item>
-                                <el-button type="primary" @click="submitForm1('form')">立即创建</el-button>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-
-                </el-form>
-            </div>
-        </el-card>
-    </page-header>
+        <el-form ref="form"
+                 :model="searchForms"
+                 label-position="top"
+                 :inline="false">
+          <el-row>
+            <el-col v-for="item in searchFormItemList"
+                    :key="item.key"
+                    :span="item.colSpan || 8">
+              <el-card class="box-card">
+                <div slot="header">
+                  <span>{{item.label}}</span>
+                </div>
+                <div>
+                  <custom-form-item :item="item"
+                                    v-model="searchForms[item.key]"></custom-form-item>
+                </div>
+              </el-card>
+            </el-col>
+            <el-col>
+              <el-form-item>
+                <el-button type="primary"
+                           @click="submitForm1('form')">立即创建</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      </div>
+    </el-card>
+  </page-header>
 
 </template>
 <script>
@@ -53,14 +58,6 @@ export default {
     return {
       searchFormItemList: pageConfig.searchForms,
       searchForms: {
-          checkbox:[],
-          upload2:[{
-          uid: -1,
-          name: "xxx.png",
-          status: "success",
-          url:"https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-          thumbUrl:"https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-        }]
       }
     };
   },
@@ -84,12 +81,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.box-card{
-    margin: 12px;
+.box-card {
+  margin: 12px;
 }
 .formitem {
   //   width: 300px;
 }
 </style>
-
 

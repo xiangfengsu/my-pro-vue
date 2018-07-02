@@ -9,16 +9,17 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { Card } from "element-ui";
-import PageHeader from "@/components/PageHeader/index";
-Vue.component(Card.name,Card);
+import Vue from 'vue';
+import { Card } from 'element-ui';
+import PageHeader from '@/components/PageHeader/index';
+
+Vue.component(Card.name, Card);
 
 export default {
-  name: "about",
+  name: 'about',
   components: {
-    PageHeader
-  }
+    PageHeader,
+  },
 };
 </script>
 <style lang="scss">

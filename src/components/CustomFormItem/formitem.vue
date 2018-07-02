@@ -1,73 +1,210 @@
 <template>
   <div class="custom-form-item">
-    <el-form-item v-if="item.formType === 'input'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'}]">
-      <el-input :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)"></el-input>
+    <el-form-item v-if="item.formType === 'input'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'}]">
+      <el-input :placeholder="placeholder"
+                :disabled="disabled"
+                :value="value"
+                @input="$emit('input', $event)"></el-input>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'inputNumber'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ pattern: item.pattern || /^[0-9]*$/, message: `${item.label}必须为数字`,trigger:'change'}]">
-      <el-input type="text" :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)"></el-input>
+    <el-form-item v-if="item.formType === 'inputNumber'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ pattern: item.pattern || /^[0-9]*$/, message: `${item.label}必须为数字`,trigger:'change'}]">
+      <el-input type="text"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :value="value"
+                @input="$emit('input', $event)"></el-input>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'inputPhone'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ pattern: item.pattern || /^1[34578]\d{9}$/, message: `手机号码格式不正确`,trigger:'change'}]">
-      <el-input type="text" :placeholder="placeholder" :disabled="disabled" :maxlength="11" :value="value" @input="$emit('input', $event)"></el-input>
+    <el-form-item v-if="item.formType === 'inputPhone'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ pattern: item.pattern || /^1[34578]\d{9}$/, message: `手机号码格式不正确`,trigger:'change'}]">
+      <el-input type="text"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :maxlength="11"
+                :value="value"
+                @input="$emit('input', $event)"></el-input>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'inputMail'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ pattern: item.pattern || /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/, message: `邮箱格式不正确`,trigger:'change'}]">
-      <el-input type="text" :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)"></el-input>
+    <el-form-item v-if="item.formType === 'inputMail'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ pattern: item.pattern || /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/, message: `邮箱格式不正确`,trigger:'change'}]">
+      <el-input type="text"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :value="value"
+                @input="$emit('input', $event)"></el-input>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'inputUnit'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ type:'number', message: `${item.label}必须为数字`,trigger:'change'}]">
-      <el-input type="text" :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)">
+    <el-form-item v-if="item.formType === 'inputUnit'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'},{ pattern: item.pattern || /^[0-9]*$/, message: `${item.label}必须为数字`,trigger:'change'}]">
+      <el-input type="text"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :value="value"
+                @input="$emit('input', $event)">
         <template slot="append">{{item.unit}}</template>
       </el-input>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'textArea'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'}]">
-      <el-input type="textarea" :placeholder="placeholder" :disabled="disabled" :rows="item.rows || 2" :value="value" @input="$emit('input', $event)"></el-input>
+    <el-form-item v-if="item.formType === 'textArea'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: inputErrorText,trigger:'change'}]">
+      <el-input type="textarea"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :rows="item.rows || 2"
+                :value="value"
+                @input="$emit('input', $event)"></el-input>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'select'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-select :multiple="item.multiple" :placeholder="placeholderSelect" :disabled="disabled" :value="value" @input="$emit('input', $event)">
-        <el-option v-for="selectItem in item.selectOptions" :key="selectItem.key" :label="selectItem.value" :value="selectItem.key">
+    <el-form-item v-if="item.formType === 'select'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-select :multiple="item.multiple"
+                 :placeholder="placeholderSelect"
+                 :disabled="disabled"
+                 :value="value"
+                 @input="$emit('input', $event)">
+        <el-option v-for="selectItem in item.selectOptions"
+                   :key="selectItem.key"
+                   :label="selectItem.value"
+                   :value="selectItem.key">
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'selectDynamic'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <dynamic-select :item="item" :value="value" @input="$emit('input', $event)"></dynamic-select>
+    <el-form-item v-if="item.formType === 'selectDynamic'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <dynamic-select :item="item"
+                      :value="value"
+                      @input="$emit('input', $event)"></dynamic-select>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'selectGroup'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-select :multiple="item.multiple" :placeholder="placeholderSelect" :disabled="disabled" :value="value" @input="$emit('input', $event)">
-        <el-option-group v-for="selectItem in item.selectOptions" :key="selectItem.key" :label="selectItem.label">
-          <el-option v-for="childItem in selectItem.childrenOptions" :key="childItem.key" :label="childItem.value" :value="childItem.key">
+    <el-form-item v-if="item.formType === 'selectGroup'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-select :multiple="item.multiple"
+                 :placeholder="placeholderSelect"
+                 :disabled="disabled"
+                 :value="value"
+                 @input="$emit('input', $event)">
+        <el-option-group v-for="selectItem in item.selectOptions"
+                         :key="selectItem.key"
+                         :label="selectItem.label">
+          <el-option v-for="childItem in selectItem.childrenOptions"
+                     :key="childItem.key"
+                     :label="childItem.value"
+                     :value="childItem.key">
           </el-option>
         </el-option-group>
       </el-select>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'selectDynamicGroup'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <dynamic-select-group :item="item" :value="value" @input="$emit('input', $event)"></dynamic-select-group>
+    <el-form-item v-if="item.formType === 'selectDynamicGroup'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <dynamic-select-group :item="item"
+                            :value="value"
+                            @input="$emit('input', $event)"></dynamic-select-group>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'datePicker'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-date-picker :type="item.showTime?'datetime':'date'" value-format="yyyy-MM-dd" :editable="false" :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)">
+    <el-form-item v-if="item.formType === 'datePicker'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-date-picker :type="item.showTime?'datetime':'date'"
+                      :value-format="item.showTime? 'yyyy-MM-dd HH:mm:ss' : 'yyyy-MM-dd' "
+                      :editable="false"
+                      :placeholder="placeholder"
+                      :disabled="disabled"
+                      :value="value"
+                      @input="$emit('input', $event)">
       </el-date-picker>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'rangePicker'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-date-picker :type="item.showTime?'datetimerange':'daterange'" value-format="yyyy-MM-dd" :editable="false" range-separator="~" start-placeholder="开始日期" end-placeholder="结束日期" :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)">
+    <el-form-item v-if="item.formType === 'rangePicker'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-date-picker :type="item.showTime?'datetimerange':'daterange'"
+                      :value-format="item.showTime? 'yyyy-MM-dd HH:mm:ss' : 'yyyy-MM-dd' "
+                      :editable="false"
+                      range-separator="~"
+                      start-placeholder="开始日期"
+                      end-placeholder="结束日期"
+                      :placeholder="placeholder"
+                      :disabled="disabled"
+                      :value="value"
+                      @input="$emit('input', $event)">
       </el-date-picker>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'monthPicker'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-date-picker type="month" value-format="yyyy-MM-dd" :editable="false" range-separator="~" start-placeholder="开始日期" end-placeholder="结束日期" :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)">
+    <el-form-item v-if="item.formType === 'monthPicker'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-date-picker type="month"
+                      value-format="yyyy-MM-dd"
+                      :editable="false"
+                      range-separator="~"
+                      start-placeholder="开始日期"
+                      end-placeholder="结束日期"
+                      :placeholder="placeholder"
+                      :disabled="disabled"
+                      :value="value"
+                      @input="$emit('input', $event)">
       </el-date-picker>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'timePicker'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-time-picker :editable="false" :placeholder="placeholder" :disabled="disabled" :value="value" @input="$emit('input', $event)">
+    <el-form-item v-if="item.formType === 'timePicker'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-time-picker :editable="false"
+                      :placeholder="placeholder"
+                      :disabled="disabled"
+                      :value="value"
+                      value-format="HH:mm:ss"
+                      @input="$emit('input', $event)">
       </el-time-picker>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'checkboxGroup'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-checkbox-group :placeholder="placeholderSelect" :disabled="disabled" :value="value" @input="$emit('input', $event)">
-        <el-checkbox v-for="option in item.options" :label="option.value" :key="option.value">{{option.label}}</el-checkbox>
+    <el-form-item v-if="item.formType === 'checkboxGroup'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-checkbox-group :placeholder="placeholderSelect"
+                         :disabled="disabled"
+                         :value="value"
+                         @input="$emit('input', $event)">
+        <el-checkbox v-for="option in item.options"
+                     :label="option.value"
+                     :key="option.value">{{option.label}}</el-checkbox>
       </el-checkbox-group>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'radioGroup'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <el-radio-group :placeholder="placeholderSelect" :disabled="disabled" :value="value" @input="$emit('input', $event)">
-        <el-radio v-for="option in item.options" :label="option.value" :key="option.value">{{option.label}}</el-radio>
+    <el-form-item v-if="item.formType === 'radioGroup'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <el-radio-group :placeholder="placeholderSelect"
+                      :disabled="disabled"
+                      :value="value"
+                      @input="$emit('input', $event)">
+        <el-radio v-for="option in item.options"
+                  :label="option.value"
+                  :key="option.value">{{option.label}}</el-radio>
       </el-radio-group>
     </el-form-item>
-    <el-form-item v-if="item.formType === 'upload'" :prop="item.key" :label="item.label" :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
-      <custom-upload :item="item"  :value="value" @input="$emit('input', $event)" ></custom-upload>
+    <el-form-item v-if="item.formType === 'upload'"
+                  :prop="item.key"
+                  :label="item.label"
+                  :rules="[{ required: isRequired, message: selectErrorText,trigger:'change'}]">
+      <custom-upload :item="item"
+                     :value="value"
+                     @input="$emit('input', $event)"></custom-upload>
     </el-form-item>
   </div>
 </template>
@@ -89,7 +226,7 @@ import {
 } from "element-ui";
 import DynamicSelect from "@/components/CustomFormItem/DynamicSelect/index.vue";
 import DynamicSelectGroup from "@/components/CustomFormItem/DynamicSelectGroup/index.vue";
-import CustomUpload from '@/components/CustomFormItem/CustomUpload/index.vue';
+import CustomUpload from "@/components/CustomFormItem/CustomUpload/index.vue";
 
 Vue.component(FormItem.name, FormItem);
 Vue.component(Input.name, Input);
@@ -108,23 +245,27 @@ export default {
   name: "custom-form-item",
   props: {
     item: Object,
-    value: null,
-  },
-  data() {
-    return {
-      uploadList:[]
-    };
+    value: {
+      type: [String, Number, Array, Date],
+      default() {
+        const { formType, initialValue } = this.item;
+        this.$emit("input", initialValue);
+        switch (formType) {
+          case "checkboxGroup":
+            return initialValue || [];
+            break;
+          default:
+            return initialValue;
+        }
+      }
+    }
   },
   components: {
     DynamicSelect,
     CustomUpload,
-    DynamicSelectGroup,
+    DynamicSelectGroup
   },
-  methods: {
-    fileOnChange(fileList){
-      console.log('fileList',fileList);
-    }
-  },
+  methods: {},
   computed: {
     disabled() {
       return this.item.disabled;
@@ -146,9 +287,8 @@ export default {
     }
   },
   watch:{
-    uploadList(n,o){
-      console.log('n',n);
-      console.log('o',o);
+    item(value){
+      this.$emit("input",value &&value.initialValue); // 当表单内容修改时，更新表单内容
     }
   }
 };

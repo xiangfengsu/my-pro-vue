@@ -4,88 +4,82 @@
             <i v-if="item.listType === 'picture-card'" class="el-icon-plus"></i>
             <el-button v-else size="small" type="primary">点击上传</el-button>
         </el-upload>
-        <el-dialog :visible.sync="dialogVisible" :fullscreen="false">
+        <el-dialog :visible.sync="dialogVisible" append-to-body>
             <light-box v-if="dialogVisible" :carouselList="carouselList" :currentIndex="currentIndex"></light-box>
             <!-- <img width="100%" :src="dialogImageUrl" alt> -->
         </el-dialog>
     </div>
 </template>
 <script>
-import Vue from "vue";
-import { Upload, Dialog } from "element-ui";
-import LightBox from "@/components/LightBox/index.vue";
+import Vue from 'vue';
+import { Upload, Dialog } from 'element-ui';
+import LightBox from '@/components/LightBox/index.vue';
+
 Vue.component(Upload.name, Upload);
 Vue.component(Dialog.name, Dialog);
 
 export default {
-  name: "custom-upload",
+  name: 'custom-upload',
   data() {
+    // console.log('this.value',this.value);
     return {
       dialogVisible: false,
       carouselList: [],
       currentIndex: 0,
-      fileList: Array.isArray(this.value) ? this.value : []
+      fileList: Array.isArray(this.value) ? this.value : [],
     };
   },
   components: {
-    LightBox
+    LightBox,
   },
   props: {
     item: Object,
-    value: null
+    value: null,
   },
   computed: {
     listType() {
-      return this.item.listType || "text";
+      return this.item.listType || 'text';
     }
   },
   methods: {
     handleChange(file, fileList) {
       this.fileList = fileList.slice(0);
-      this.$emit("input", fileList);
+      this.$emit('input', fileList);
     },
     handleRemove(file, fileList) {
       this.fileList = fileList.slice(0);
-      this.$emit("input", fileList);
+      this.$emit('input', fileList);
     },
     handlePreview(file) {
       const url = file.response ? file.response.url : file.url;
-      if (this.listType === "text") {
+      if (this.listType === 'text') {
         window.open(url);
       } else {
-        const regpHandle = text => {
-          return /^https?.*(gif|png|jpe?g|GIF|PNG|JPE?G)$/.test(text);
-        };
-        if(!regpHandle(url)){
-            this.$message.error(`该文件不是图片类型，无法预览!`);
-            return ;
-        }   
-        const index = this.fileList.findIndex(item => {
-          return item.uid === file.uid;
-        });
+        const regpHandle = text => /^https?.*(gif|png|jpe?g|GIF|PNG|JPE?G)$/.test(text);
+        if (!regpHandle(url)) {
+          this.$message.error('该文件不是图片类型，无法预览!');
+          return;
+        }
+        const index = this.fileList.findIndex(item => item.uid === file.uid);
         this.carouselList = this.formaterFileList();
         this.currentIndex = index === -1 ? 0 : index;
         this.dialogVisible = true;
       }
     },
     formaterFileList() {
-      return this.fileList.map(file => {
-        return {
-          uid:file.uid,
-          name: file.name || "no name",
-          url: file.response ? file.response.url : file.url
-        };
-      });
+      return this.fileList.map(file => ({
+        uid: file.uid,
+        name: file.name || 'no name',
+        url: file.response ? file.response.url : file.url,
+      }));
     },
-    handleError(err, file, fileList) {
+    handleError(err, file) {
       this.$message.error(`${file.name} 上传失败!`);
     },
     handleExceed(files, fileList) {
-      this.$message.warning(
-        `当前限制选择 ${this.item.maxFileCounts} 个文件，本次选择了 ${
-          files.length
-        } 个文件，共选择了 ${files.length + fileList.length} 个文件`
-      );
+      this.$message.warning(`当前限制选择 ${this.item.maxFileCounts} 个文件，本次选择了 ${
+        files.length
+      } 个文件，共选择了 ${files.length + fileList.length} 个文件`);
     },
     beforeUpload(file) {
       const { maxFileSize = 1 } = this.item;
@@ -97,11 +91,16 @@ export default {
       return ltSize;
     },
     beforeRemove(file, fileList) {
-      if (file.status !== "ready") {
+      if (file.status !== 'ready') {
         return this.$confirm(`确定移除 ${file.name}？`);
       }
-    }
-  }
+      return true;
+    },
+  },
 };
 </script>
+<style lang="scss">
+
+</style>
+
 

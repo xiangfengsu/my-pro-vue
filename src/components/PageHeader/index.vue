@@ -12,28 +12,29 @@
     </div>
 </template>
 <script>
-import Vue from "vue";
-import { Breadcrumb, BreadcrumbItem } from "element-ui";
+import Vue from 'vue';
+import { Breadcrumb, BreadcrumbItem } from 'element-ui';
+
 Vue.component(Breadcrumb.name, Breadcrumb);
 Vue.component(BreadcrumbItem.name, BreadcrumbItem);
 
 export default {
-  name: "page-header",
-  data(){
-      return {
+  name: 'page-header',
+  data() {
+    return {
 
-      }
+    };
   },
-  computed:{
-      breadcrumbName(){
-          return this.$store.state.app.breadcrumbName;
-      }
-  }
+  computed: {
+    breadcrumbName() {
+      return this.$store.state.app.breadcrumbName;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
 .page-header {
- 
+
   margin: -20px -20px 0px;
   .breadcrumbBox {
     background-color: #fff;
@@ -47,5 +48,4 @@ export default {
   }
 }
 </style>
-
 

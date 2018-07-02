@@ -3,6 +3,7 @@ export default {
     formType: 'input',
     disabled: false,
     isRequired: false,
+    initialValue: 'ssss',
     key: 'input',
     label: 'input',
     colSpan: 8,
@@ -10,6 +11,7 @@ export default {
     hasFeedback: true,
   }, {
     formType: 'inputNumber',
+    initialValue: 123,
     disabled: false,
     isRequired: false,
     key: 'inputNumber',
@@ -218,6 +220,7 @@ export default {
     placeholder: 'datePicker',
   }, {
     formType: 'rangePicker',
+    initialValue: ['2018-05-05', '2018-05-25'],
     showTime: false,
     disabled: false,
     isRequired: false,
@@ -238,6 +241,7 @@ export default {
     label: 'monthPicker',
   }, {
     formType: 'timePicker',
+    initialValue: '12:12:12',
     disabled: false,
     isRequired: false,
     key: 'timePicker',
@@ -283,7 +287,7 @@ export default {
     key: 'upload1',
     label: 'upload-listType-text',
     placeholder: 'upload1',
-    action: 'http://118.190.154.11:3000/mock/7/file/upload',
+    action: 'sys/file/upload',
     multiple: true,
     acceptType: '*', // .jpg,.png,.pdf,.mp4,.gif,.word
     listType: 'text', // 1:text  2:picture 3:picture-card
@@ -297,7 +301,7 @@ export default {
     key: 'upload2',
     label: 'upload-listType-picture-card',
     placeholder: 'upload-listType-picture-card',
-    action: 'http://127.0.0.1:7001/form',
+    action: 'sys/file/upload',
     multiple: true,
     acceptType: 'image/*', // .jpg,.png,.pdf,.mp4,.gif,.word
     listType: 'picture-card', // 1:text  2:picture 3:picture-card
@@ -311,7 +315,7 @@ export default {
     key: 'upload3',
     label: 'upload-listType-picture-card',
     placeholder: 'upload-listType-picture-card',
-    action: 'http://118.190.154.11:3000/mock/7/file/upload',
+    action: 'sys/file/upload',
     multiple: true,
     acceptType: 'image/*', // .jpg,.png,.pdf,.mp4,.gif,.word
     listType: 'picture', // 1:text  2:picture 3:picture-card

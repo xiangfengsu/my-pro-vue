@@ -18,8 +18,7 @@
 </template>
 <script>
 export default {
-  name: "user-layout"
+  name: 'user-layout',
 };
 </script>
-
 

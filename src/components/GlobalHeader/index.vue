@@ -22,15 +22,15 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
+import Vue from 'vue';
 import {
   Header,
   Dropdown,
   DropdownMenu,
   DropdownItem,
   Breadcrumb,
-  BreadcrumbItem
-} from "element-ui";
+  BreadcrumbItem,
+} from 'element-ui';
 
 Vue.component(Header.name, Header);
 Vue.component(Dropdown.name, Dropdown);
@@ -40,24 +40,24 @@ Vue.component(Breadcrumb.name, Breadcrumb);
 Vue.component(BreadcrumbItem.name, BreadcrumbItem);
 
 export default {
-  name: "global-header",
+  name: 'global-header',
   props: {
     collapse: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     toggle() {
-      this.$emit("handle-menu-collapse", !this.collapse);
+      this.$emit('handle-menu-collapse', !this.collapse);
     },
-    handleCommand(command){
-      if(command === 'loginout'){
+    handleCommand(command) {
+      if (command === 'loginout') {
         this.$store.dispatch({
-          type:'loginOut'
-        })
+          type: 'loginOut',
+        });
       }
-    }
-  }
+    },
+  },
 };
 </script>

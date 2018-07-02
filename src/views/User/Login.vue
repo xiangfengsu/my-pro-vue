@@ -25,8 +25,9 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { Row, Col, Form, FormItem, Input, Button, Alert } from "element-ui";
+import Vue from 'vue';
+import { Row, Col, Form, FormItem, Input, Button, Alert } from 'element-ui';
+
 Vue.component(Row.name, Row);
 Vue.component(Col.name, Col);
 Vue.component(Form.name, Form);
@@ -35,24 +36,24 @@ Vue.component(Input.name, Input);
 Vue.component(Button.name, Button);
 Vue.component(Alert.name, Alert);
 
-const codeUrl = "http://newfhmcar.chunlvbank.com/FHM_car300/code.do";
+const codeUrl = 'http://newfhmcar.chunlvbank.com/FHM_car300/code.do';
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {
       codeUrl,
       loginForm: {
-        username: "",
-        password: "",
-        code: ""
+        username: '',
+        password: '',
+        code: '',
       },
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
+          { required: true, message: '请输入用户名', trigger: 'blur' },
         ],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-        code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
-      }
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+        code: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
+      },
     };
   },
   computed: {
@@ -66,26 +67,26 @@ export default {
       return this.$store.state.user.errorMessage;
     },
     showErrorAlert() {
-      return this.status === "error" && !this.loading;
-    }
+      return this.status === 'error' && !this.loading;
+    },
   },
   methods: {
     refreshCodeHandel() {
       this.codeUrl = `${codeUrl}?v=${Date.now()}`;
     },
     submitForm(formName) {
-      this.$refs[formName].validate(valid => {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.dispatch({
-            type: "login",
-            payload: this.loginForm
+            type: 'login',
+            payload: this.loginForm,
           });
         } else {
           return false;
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -110,5 +111,4 @@ export default {
   }
 }
 </style>
-
 

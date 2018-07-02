@@ -67,7 +67,7 @@ export default {
   methods: {
     handleOpen() {},
     handleClose() {},
-    selectMenu(index,indexPath) {
+    selectMenu(index, indexPath) {
       this.$router.push({ path: `${index}` });
     },
   },

@@ -8,19 +8,19 @@
     </div>
 </template>
 <script>
-import Vue from "vue";
-import { Carousel, CarouselItem } from "element-ui";
+import Vue from 'vue';
+import { Carousel, CarouselItem } from 'element-ui';
 
 Vue.component(Carousel.name, Carousel);
 Vue.component(CarouselItem.name, CarouselItem);
 export default {
-  name: "light-box",
-  props:{
-      carouselList:Array,
-      currentIndex:{
-          type:Number,
-          default:0
-      }
+  name: 'light-box',
+  props: {
+    carouselList: Array,
+    currentIndex: {
+      type: Number,
+      default: 0,
+    },
   },
 };
 </script>
@@ -34,5 +34,4 @@ export default {
     }
 }
 </style>
-
 

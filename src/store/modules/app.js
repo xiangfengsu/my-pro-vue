@@ -7,7 +7,6 @@ const app = {
       Object.assign(state, {
         breadcrumbName: payload.name,
       });
-      // state.breadcrumbName = payload.name;
     },
   },
   actions: {

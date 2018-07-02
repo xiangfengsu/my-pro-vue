@@ -5,31 +5,32 @@
     </el-select>
 </template>
 <script>
-import Vue from "vue";
-import { Select, Option } from "element-ui";
+import Vue from 'vue';
+import { Select, Option } from 'element-ui';
+
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
 export default {
-  name: "dynamic-select",
+  name: 'dynamic-select',
   props: {
     item: Object,
-    value: null
+    value: null,
   },
   computed: {
     dictionaryList() {
       return this.$store.state.dictionary[this.item.dictionaryKey];
-    }
+    },
   },
   mounted() {
     const { dictionaryKey, fetchUrl } = this.item;
     this.$store.dispatch({
-      type: "queryDictionary",
+      type: 'dictionary/queryDictionary',
       payload: {
         fetchUrl,
-        dictionaryKey
-      }
+        dictionaryKey,
+      },
     });
-  }
+  },
 };
 </script>
 

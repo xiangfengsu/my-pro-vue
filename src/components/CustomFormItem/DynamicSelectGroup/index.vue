@@ -7,32 +7,33 @@
     </el-select>
 </template>
 <script>
-import Vue from "vue";
-import { Select, Option, OptionGroup } from "element-ui";
+import Vue from 'vue';
+import { Select, Option, OptionGroup } from 'element-ui';
+
 Vue.component(OptionGroup.name, OptionGroup);
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
 export default {
-  name: "dynamic-select-group",
+  name: 'dynamic-select-group',
   props: {
     item: Object,
-    value: null
+    value: null,
   },
   computed: {
     dictionaryList() {
       return this.$store.state.dictionary[this.item.dictionaryKey];
-    }
+    },
   },
   mounted() {
     const { dictionaryKey, fetchUrl } = this.item;
     this.$store.dispatch({
-      type: "queryDictionary",
+      type: 'dictionary/queryDictionary',
       payload: {
         fetchUrl,
-        dictionaryKey
-      }
+        dictionaryKey,
+      },
     });
-  }
+  },
 };
 </script>
 

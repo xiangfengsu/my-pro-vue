@@ -90,6 +90,18 @@ export const basicRouter = [{
   component: Main,
 }];
 export const appRouter = [{
+  path: '/standardTable',
+  name: 'standardTable',
+  title: 'standardTable',
+  component: Main,
+  children: [{
+    path: 'standardTablePage',
+    name: 'standardTablePage',
+    title: '标准table',
+    component: () =>
+      import('@/views/StandardTable/index'),
+  }],
+}, {
   path: '/formItemType',
   name: 'formItemType',
   title: 'formItemType',

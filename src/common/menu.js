@@ -1,4 +1,10 @@
 export default [{
+  name: '标准table',
+  icon: 'el-icon-picture',
+  path: 'standardTable/standardTablePage',
+  children: [],
+  menutype: 2,
+}, {
   name: '表单类型',
   icon: 'el-icon-tickets',
   path: 'formItemType/formItemTypePage',

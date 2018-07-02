@@ -19,49 +19,49 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { Container, Header, Main, Loading } from "element-ui";
-import SiderMenu from "../components/SiderMenu/index.vue";
-import GlobalHeader from "../components/GlobalHeader/index.vue";
-import GlobalFooter from "../components/GlobalFooter/index.vue";
-import menuData from "../common/menu";
+import Vue from 'vue';
+import { Container, Header, Main, Loading } from 'element-ui';
+import SiderMenu from '../components/SiderMenu/index.vue';
+import GlobalHeader from '../components/GlobalHeader/index.vue';
+import GlobalFooter from '../components/GlobalFooter/index.vue';
+import menuData from '../common/menu';
 import {
   formatter,
   menuDataPathToArray,
   authorityMenu,
-  getRedirectData
-} from "@/utils/utils";
+  getRedirectData,
+} from '@/utils/utils';
 
 Vue.component(Container.name, Container);
 Vue.component(Header.name, Header);
 Vue.component(Main.name, Main);
 Vue.use(Loading.directive);
 export default {
-  name: "basic-layout",
+  name: 'basic-layout',
   components: {
     SiderMenu,
     GlobalHeader,
-    GlobalFooter
+    GlobalFooter,
   },
   data() {
     return {
       collapse: false,
-      menuDataList:formatter(menuData),
-      menuList: menuData
+      menuDataList: formatter(menuData),
+      menuList: menuData,
     };
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch({
-      type:'getUserInfo'
+      type: 'getUserInfo',
     });
   },
-  computed:{
-    currentUser(){
+  computed: {
+    currentUser() {
       return this.$store.state.user.currentUser;
     },
-    isFetched(){
-      return !this.currentUser.menuData || (this.currentUser.menuData && this.currentUser.menuData.length===0)
-    }
+    isFetched() {
+      return !this.currentUser.menuData || (this.currentUser.menuData && this.currentUser.menuData.length === 0);
+    },
   },
   methods: {
     handleMenuCollapse(collapsed) {
@@ -75,41 +75,35 @@ export default {
       }
     },
     gerBreadcrumbName(menuData, fullPath) {
-      const pathObj = menuData.find(item => {
-        return item.path === fullPath;
-      });
-      return pathObj ? pathObj.name : "";
+      const pathObj = menuData.find(item => item.path === fullPath);
+      return pathObj ? pathObj.name : '';
     },
     authorityAndRedirect(to, context, next) {
       const { fullPath } = to;
       const redirectData = getRedirectData(context.menuList);
       const menuData = menuDataPathToArray(formatter(context.menuList));
-      if (fullPath === "/") {
+      if (fullPath === '/') {
         context.nextOrPushHandel(context, next, { path: menuData[0].path });
+      } else if (!authorityMenu(fullPath, menuData)) {
+        context.nextOrPushHandel(context, next, { path: '/exception/403' });
       } else {
-        if (!authorityMenu(fullPath, menuData)) {
-          context.nextOrPushHandel(context, next, { path: "/exception/403" });
-        } else {
-          const toPathItem = redirectData.find(item => {
-            return item.from === fullPath || `${item.from}/` === fullPath;
-          });
-          if (toPathItem !== undefined) {
-            // console.log('toPathItem',toPathItem);
+        const toPathItem = redirectData.find(item => item.from === fullPath || `${item.from}/` === fullPath);
+        if (toPathItem !== undefined) {
+          // console.log('toPathItem',toPathItem);
 
-            context.nextOrPushHandel(context, next, { path: toPathItem.to });
-          } else {
-            next && next();
-          }
+          context.nextOrPushHandel(context, next, { path: toPathItem.to });
+        } else {
+          next && next();
         }
       }
       context.$store.commit({
-        type: "updateBreadcrumbName",
-        name: context.gerBreadcrumbName(menuData,to.fullPath)
+        type: 'updateBreadcrumbName',
+        name: context.gerBreadcrumbName(menuData, to.fullPath),
       });
-    }
+    },
   },
   beforeRouteEnter(to, from, next) {
-    next(vm => {
+    next((vm) => {
       vm.authorityAndRedirect(to, vm, next);
     });
   },
@@ -119,8 +113,8 @@ export default {
   watch: {
     $route(to, from) {
       this.authorityAndRedirect(to, this);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

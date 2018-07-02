@@ -84,4 +84,48 @@ export function getRedirectData(menuData) {
   formatter(menuData).forEach(getRedirect);
   return redirectData;
 }
+export function formItemAddInitValue(formItems, currentItem) {
+  if (
+    !currentItem ||
+    Object.prototype.toString.call(currentItem) !== '[object Object]'
+  ) {
+    return formItems;
+  }
+  const newFormItems = [];
+  const currItemKeys = Object.keys(currentItem);
+  if (currItemKeys.length > 0) {
+    formItems.forEach((item) => {
+      const index = currItemKeys.indexOf(item.key);
+      if (index > -1) {
+        newFormItems.push(
+          Object.assign({}, item, {
+            initialValue: currentItem[currItemKeys[index]],
+          })
+        );
+      } else {
+        newFormItems.push(item);
+      }
+    });
+  } else {
+    formItems.forEach((item) => {
+      newFormItems.push(item);
+    });
+  }
 
+  return newFormItems;
+}
+export function formaterObjectValue(obj) {
+  const newObj = {};
+  if (!obj || Object.prototype.toString.call(obj) !== '[object Object]') {
+    
+    return newObj;
+  }
+  for (const key in obj) {
+    // eslint-disable-next-line
+    if (obj.hasOwnProperty(key)) {
+
+      newObj[key] = obj[key] === undefined ? '' : obj[key];
+    }
+  }
+  return newObj;
+}
