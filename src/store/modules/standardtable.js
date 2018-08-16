@@ -3,6 +3,7 @@ import {
     queryPost
 } from '@/services/api';
 import showStautsMessageHandle from '@/utils/statusCode';
+import { formatterTableListPic } from '@/utils/utils';
 
 const standardtable = {
     namespaced: true,
@@ -36,7 +37,7 @@ const standardtable = {
             payload
         }) {
             Object.assign(state, {
-                ...payload,
+                ...formatterTableListPic(payload.data,['picUrl']),
                 loading: false,
                 dialogVisible: false
             });

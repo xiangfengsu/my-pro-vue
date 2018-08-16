@@ -129,3 +129,81 @@ export function formaterObjectValue(obj) {
   }
   return newObj;
 }
+// 转换list 格式，功能：keyList=[],把list中的dictionary字段转化
+export function formatterTableList(data,keyList=[]){
+  const { dictionary={},list=[] } = data;
+  const dicKeys = Object.keys(dictionary);
+  let keys = [];
+  keyList.forEach(key=>{
+    if(dicKeys.indexOf(key)!==-1){
+      keys.push(key);
+    }
+  });
+  const newList = list.map(item=>{
+    keys.forEach(key=>{
+      const addKey = `${key}List`;
+      let addkeyList = [];
+      item[key].forEach(itemkey=>{
+        const index = dictionary[key].findIndex(v=>{
+          return v.key === itemkey;
+        });
+        if(index!==-1){
+          addkeyList.push(dictionary[key][index]);
+        }
+      });
+      item[addKey] = addkeyList;
+    })
+    return {...item};
+  });
+ 
+  return {
+    data:Object.assign({},data,{
+      list:newList
+    })
+  }
+}
+
+// 转换list picKeyList=[],把list中的图片字段转化上传照片需要的格式
+/*
+   [{
+      uid: -1,
+      name: 'xxx.png',
+      status: 'done',
+      url:'',
+      thumbUrl:''
+   }]
+*/
+export function formatterTableListPic(data,picKeyList=[]){
+  const { list=[] } = data;
+  const newList = list.map(item=>{
+    if(picKeyList.length!==0){
+      picKeyList.forEach(picurl=>{
+        // eslint-disable-next-line;
+        if(item.hasOwnProperty(picurl)){  
+          // console.log(item[picurl])
+          const urlsList = item[picurl] === ''?[]:item[picurl].split(',');
+          if(urlsList.length!==0){
+            item[picurl] = urlsList.map((url,index)=>{
+              return {
+                uid:-(index + Date.now()),
+                name:'',
+                status: 'done',
+                thumbUrl:url,
+                url
+              }
+            })
+          }else{
+            item[picurl] = urlsList;
+          }
+        }
+      })
+    } 
+    return {...item};
+  });
+ 
+  return {
+    data:Object.assign({},data,{
+      list:newList
+    })
+  }
+}
