@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Notification } from 'element-ui';
-import router from '@/common/router';
+import router from '@/core/common/router';
 
 const domain = '/';
 const codeMessage = {

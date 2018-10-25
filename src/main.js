@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import { Notification, Message, MessageBox } from 'element-ui';
 import App from './App.vue';
-import router from './common/router';
-import store from './store/index';
+import router,{ store } from '@/core/common/router';
+// import store from './store/index';
+
 
 
 Vue.prototype.$notify = Notification;

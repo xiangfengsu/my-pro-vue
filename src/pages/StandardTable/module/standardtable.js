@@ -1,9 +1,10 @@
-import { query, queryPost } from "@/services/api";
-import showStautsMessageHandle from "@/utils/statusCode";
-import { formatterTableListPic } from "@/utils/utils";
+import { query, queryPost } from "@/core/service/api";
+import showStautsMessageHandle from "@/core/utils/statusCode";
+import { formatterTableListPic } from "@/core/utils/utils";
 
 const standardtable = {
   namespaced: true,
+  name:'standardtable',
   state: {
     data: {
       list: [],

@@ -1,8 +1,9 @@
-import { query } from "@/services/api";
+import { query } from "@/core/service/api";
 import Vue from "vue";
 
 const dictionary = {
   namespaced: true,
+  name:'dictionary',
   state: {
     dictionaryList: {}
   },

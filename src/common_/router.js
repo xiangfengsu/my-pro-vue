@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Main from '@/layouts/BasicLayout.vue';
-import UserLayout from '@/layouts/UserLayout.vue';
+import Main from '@/core/layouts/BasicLayout.vue';
+import UserLayout from '@/core/layouts/UserLayout.vue';
 
 Vue.use(VueRouter);
 

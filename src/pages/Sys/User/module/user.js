@@ -1,7 +1,9 @@
-import { getUser, accountLogin, accountLoginOut } from "@/services/user";
+import { getUser, accountLogin, accountLoginOut } from "../service/user";
 import router from "@/core/common/router";
+
 const user = {
   namespaced: true,
+  name:'user',
   state: {
     currentUser: {},
     status: undefined,
@@ -34,7 +36,7 @@ const user = {
           loginLoading: true
         }
       });
-      const response = await accountLogin(payload, "/sys/doLogin");
+      const response = await accountLogin(payload);
       commit({
         type: "changeLoginLoading",
         payload: {
@@ -64,7 +66,7 @@ const user = {
     },
     async loginOut({ commit }) {
       try {
-        await accountLoginOut("/sys/logout");
+        await accountLoginOut();
         commit({
           type: "changeLoginStatus",
           payload: {
@@ -79,7 +81,7 @@ const user = {
       }
     },
     async getUserInfo({ commit }) {
-      const response = await getUser("/sys/currentUser");
+      const response = await getUser();
       if (response) {
         const { code, body } = response;
         if (code === 200) {
@@ -92,5 +94,5 @@ const user = {
     }
   }
 };
-// store.registerModule('user',user)
+
 export default user;

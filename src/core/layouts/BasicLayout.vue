@@ -21,16 +21,16 @@
 <script>
 import Vue from 'vue';
 import { Container, Header, Main, Loading } from 'element-ui';
-import SiderMenu from '../components/SiderMenu/index.vue';
-import GlobalHeader from '../components/GlobalHeader/index.vue';
-import GlobalFooter from '../components/GlobalFooter/index.vue';
-import menuData from '../common/menu';
+import SiderMenu from '@/components/SiderMenu/index.vue';
+import GlobalHeader from '@/components/GlobalHeader/index.vue';
+import GlobalFooter from '@/components/GlobalFooter/index.vue';
+import menuData from '@/core/common/menu';
 import {
   formatter,
   menuDataPathToArray,
   authorityMenu,
   getRedirectData,
-} from '@/utils/utils';
+} from '@/core/utils/utils';
 
 Vue.component(Container.name, Container);
 Vue.component(Header.name, Header);
@@ -52,7 +52,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch({
-      type: 'getUserInfo',
+      type: 'user/getUserInfo',
     });
   },
   computed: {
@@ -90,10 +90,9 @@ export default {
         const toPathItem = redirectData.find(item => item.from === fullPath || `${item.from}/` === fullPath);
         if (toPathItem !== undefined) {
           // console.log('toPathItem',toPathItem);
-
           context.nextOrPushHandel(context, next, { path: toPathItem.to });
         } else {
-          next && next();
+          next && next(); 
         }
       }
       context.$store.commit({

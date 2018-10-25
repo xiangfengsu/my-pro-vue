@@ -54,7 +54,7 @@ export default {
     handleCommand(command) {
       if (command === 'loginout') {
         this.$store.dispatch({
-          type: 'loginOut',
+          type: 'user/loginOut',
         });
       }
     },
